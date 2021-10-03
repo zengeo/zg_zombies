@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Tea uci zombije</title>
+  </head>
+  <style>
+#zombie_map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    background-color: grey;}
+</style>
+  <body>
+  My zombie map
+    <h1>Hello Tea</h1>  
+	Items I want to appear on my page will go here
+<div id="zombie_map"></div>
+
+<script>
+    var zombie_map;
+	all_markers = [];
+	var data = ` 53.60324782927225 9.97024127001953 zombie.png
+    53.597033956717894 9.959426603271483 weapons.png
+    53.5946907838593 9.971271238281249 hospital.png
+    53.6082386386532 9.93728228564453 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+    53.61526551312968 9.968867979003905 weapons.png
+    53.59591332504284 9.941230497314452 Old_Wine_Fxemoji_u1F377.svg.png`;
+    var markers = data.split("\n");
+    function initMap() {
+            zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
+            zoom: 15,
+            center: {lat: 53.590792, lng: 9.946552}  
+        });
+	for(var i=0; i < markers.length; i++){
+    var marker_data = markers[i].trim();
+	marker_data = marker_data.split(" ");
+	var latitude = marker_data[0];
+    var longitude = marker_data[1];
+    var emoji = marker_data[2];
+	var marker_position = new google.maps.LatLng(latitude, longitude);
+	var marker = new google.maps.Marker({
+    position: marker_position,
+    map: zombie_map,
+    icon: emoji
+	});
+    all_markers.push(marker);
+	}
+	if(navigator.geolocation) {
+    navigator.geolocation.watchPosition(set_my_position);
+    }
+    else {
+    alert("Geolocation doesn't work in your browser");
+    }
+    }
+	function set_my_position(position){
+	var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	var player = 'player.png'
+	var marker = new google.maps.Marker({
+    position: pos,
+    map: zombie_map,
+	icon: player
+    });
+    }
+
+
+	
+</script>
+	<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAycYqIvGk3fBpwX4wotJq5r0HMnl8UZSY&callback=initMap">
+    </script>
+  </body>
+</html>
