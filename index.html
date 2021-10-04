@@ -19,8 +19,9 @@
 
 <script>
     var zombie_map;
-	all_markers = [];
-	var data = ` 53.60324782927225 9.97024127001953 zombie.png
+    var old_position;	
+    all_markers = [];
+    var data = ` 53.60324782927225 9.97024127001953 zombie.png
     53.597033956717894 9.959426603271483 weapons.png
     53.5946907838593 9.971271238281249 hospital.png
     53.6082386386532 9.93728228564453 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
@@ -32,6 +33,11 @@
             zoom: 15,
             center: {lat: 53.5982961, lng: 9.9394004}  
         });
+	old_position = new google.maps.Marker({
+        position: new google.maps.LatLng(53.5982961, 9.9394004),
+        map: zombie_map,
+       icon: 'player.png'
+	}); 
 	for(var i=0; i < markers.length; i++){
     var marker_data = markers[i].trim();
 	marker_data = marker_data.split(" ");
@@ -54,6 +60,7 @@
     }
     }
 	function set_my_position(position){
+	old_position.setMap(null);
 	var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var player = 'player.png'
 	var marker = new google.maps.Marker({
@@ -61,6 +68,7 @@
     map: zombie_map,
 	icon: player
     });
+    old_position = marker;		
     }
 
 
