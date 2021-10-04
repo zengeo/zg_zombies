@@ -19,6 +19,7 @@
 
 <script>
     var zombie_map;
+    var tolerance = 10
     var old_position;	
     all_markers = [];
     var data = ` 53.60324782927225 9.97024127001953 zombie.png
@@ -75,7 +76,7 @@
 	
 </script>
 	<script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAycYqIvGk3fBpwX4wotJq5r0HMnl8UZSY&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAycYqIvGk3fBpwX4wotJq5r0HMnl8UZSY&callback=initMap&libraries=geometry">
     </script>
   </body>
 </html>
