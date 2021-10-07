@@ -75,16 +75,17 @@
     old_position = marker;
     for(var i=0; i < all_markers.length; i++){
     var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
+    if( distance < tolerance ){
     var what_is_it = all_markers[i].getIcon();
     what_is_it = what_is_it.replace(".png", "");
-    if( distance < tolerance ){
-    alert("Found the " + what_is_it)
-    }
+    alert("Found the " + what_is_it);
+    all_markers[i].setMap(null);
     if( what_is_it != "zombie" ){
         score +=10;
 	alert("Your score is " + score)
     }	    
     }		
+    }
     }
 
 
