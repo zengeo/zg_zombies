@@ -19,18 +19,46 @@
 
 <script>
     var zombie_map;
-    var tolerance = 10
+    var score = 0;
+    var tolerance = 50;
     var old_position;	
     all_markers = [];
-    var data = ` 53.60324782927225 9.97024127001953 zombie.png
-    53.597033956717894 9.959426603271483 weapons.png
-    53.56839492566575, 9.967473596466919 weapons.png
-    53.5946907838593 9.971271238281249 hospital.png
-    53.56833121105428, 9.967602342503428 hospital.png
-    53.57405240050798, 9.96934041386603 hospital.png
-    53.6082386386532 9.93728228564453 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
-    53.61526551312968 9.968867979003905 weapons.png
-    53.59696834718354, 9.942249473313332 Old_Wine_Fxemoji_u1F377.svg.png`;
+    var data = `53.59162069136396 9.946380338623046 weapons.png
+53.59791898043245 9.95349355693054 weapons.png
+53.596946514920695 9.94228192324829 weapons.png
+53.568743347681 9.967537603332518 weapons.png
+53.56866051934819 9.974801025344847 weapons.png
+53.56782288211739 9.959415874435424 weapons.png
+53.563890862548405 9.965629577636719 weapons.png
+53.564314990082636 9.962334117843627 weapons.png
+53.576570530004965 9.95177694316101 weapons.png
+53.57862424071708 9.950425109817504 weapons.png
+53.58220737845992 9.947635612442015 weapons.png
+53.5869781958461 9.947978935195922 weapons.png
+53.5933463724185 9.94325824732971 hospital.png
+53.58753863389507 9.972183189346312 hospital.png
+53.563719460968706 9.960687948012138 hospital.png
+53.59780376241355 9.98972438594412 hospital.png
+53.615976363159795 9.966438985792898 zombie.png
+53.607625594478264 9.94240639301946 zombie.png
+53.56396017441667 9.977021327094743 zombie.png
+53.57582255718458 9.952731242255876 zombie.png
+53.58933979608355 9.948318374560298 zombie.png
+53.59530655851318 9.942026138305664 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+53.588320855713654 9.946043861315669 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+53.5810411719104 9.947433471679688 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+53.563740349661515 9.967690940353119 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+53.56309293364021 9.965459342452728 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+53.56444383017698 9.965566630813324 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+53.566923890069596 9.9570894241333 Maize_Corn_Noto_Emoji_Pie_1f33d.svg.png
+53.5624267095943 9.962347979995453 Old_Wine_Fxemoji_u1F377.svg.png
+53.56188802975657 9.961961741897309 Old_Wine_Fxemoji_u1F377.svg.png
+53.56264190564469 9.961788654327393 Old_Wine_Fxemoji_u1F377.svg.png
+53.56480650510269 9.959451194259369 Old_Wine_Fxemoji_u1F377.svg.png
+53.59450126632304 9.942585463973725 Old_Wine_Fxemoji_u1F377.svg.png
+53.59661523096697 9.951597686263764 Old_Wine_Fxemoji_u1F377.svg.png
+53.59475256974549 10.00760221049472 Old_Wine_Fxemoji_u1F377.svg.png
+53.60208727549502 9.979106421920502 Old_Wine_Fxemoji_u1F377.svg.png`;
     var markers = data.split("\n");
     function initMap() {
             zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
@@ -40,21 +68,21 @@
 	old_position = new google.maps.Marker({
         position: new google.maps.LatLng(53.5982961, 9.9394004),
         map: zombie_map,
-       icon: 'player.png'
+        icon: 'player.png'
 	}); 
 	for(var i=0; i < markers.length; i++){
-    var marker_data = markers[i].trim();
+        var marker_data = markers[i].trim();
 	marker_data = marker_data.split(" ");
 	var latitude = marker_data[0];
-    var longitude = marker_data[1];
-    var emoji = marker_data[2];
+        var longitude = marker_data[1];
+        var emoji = marker_data[2];
 	var marker_position = new google.maps.LatLng(latitude, longitude);
 	var marker = new google.maps.Marker({
-    position: marker_position,
-    map: zombie_map,
-    icon: emoji
+        position: marker_position,
+        map: zombie_map,
+        icon: emoji
 	});
-    all_markers.push(marker);
+        all_markers.push(marker);
 	}
 	if(navigator.geolocation) {
     navigator.geolocation.watchPosition(set_my_position);
