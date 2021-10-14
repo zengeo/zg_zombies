@@ -108,13 +108,12 @@
     what_is_it = what_is_it.replace(".png", "");
     alert("Found the " + what_is_it);
     all_markers[i].setMap(null);
+    all_markers[i]=null;	    
     if( what_is_it != "zombie" ){
         score +=10;
-	alert("Your score is " + score);
-    all_markers[i].setMap(null)    
+	alert("Your score is " + score)
     } else {
     score += -10;
-    all_markers[i].setMap(null);	
     alert("Njammy...mmmm, brains " + score);
     if (score < 0){
     alert("You walk like a zombie, now ")
