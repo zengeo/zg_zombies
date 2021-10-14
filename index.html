@@ -110,7 +110,17 @@
     all_markers[i].setMap(null);
     if( what_is_it != "zombie" ){
         score +=10;
-	alert("Your score is " + score)
+	alert("Your score is " + score);
+    all_markers[i].setMap(null)    
+    } else {
+    score += -10;
+    all_markers[i].setMap(null);	
+    alert("Njammy...mmmm, brains " + score);
+    if (score < 0){
+    alert("You walk like a zombie, now ")
+    } else {
+    alert("Ruuuuuun! Try to stay away from here! There is still chance for human race ")
+    }	    
     }	    
     }		
     }
